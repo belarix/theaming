@@ -1,0 +1,82 @@
+===============================
+Install Pywal on Ubuntu (Guide)
+===============================
+
+Step 1: Install Required Packages
+---------------------------------
+Open a terminal and run:
+
+    sudo apt update
+    sudo apt install python3 python3-pip imagemagick feh -y
+
+- python3 & pip3: Required for installing Pywal.
+- imagemagick: For extracting colors from images.
+- feh: Sets the wallpaper (replaceable with other tools).
+
+Step 2: Install Pywal
+---------------------
+Run:
+
+    pip3 install pywal
+
+Note: If you see a message about "Defaulting to user installation," the 'wal' command may not be in your PATH. Continue to Step 3.
+
+Step 3: Fix 'wal' Command Not Found
+-----------------------------------
+
+Pywal installs the command in: ~/.local/bin
+
+Temporarily (for current session):
+
+    export PATH=$PATH:$HOME/.local/bin
+
+Permanently (so it works every time you open a terminal):
+
+- For bash users:
+
+      echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.bashrc
+      source ~/.bashrc
+
+- For zsh users:
+
+      echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.zshrc
+      source ~/.zshrc
+
+Step 4: Use Pywal
+-----------------
+
+Navigate to the folder with your image:
+
+    cd ~/Pictures
+
+Run Pywal with your image:
+
+    wal -i Screenshot_2025-08-20_11-00-39.png
+
+This will:
+- Generate a color scheme from the image.
+- Set the wallpaper using `feh`.
+- Apply colors to supported terminals.
+
+Step 5: Verify Output (Optional)
+--------------------------------
+
+Check generated colors:
+
+    cat ~/.cache/wal/colors.sh
+
+Step 6: Apply Colors on Startup (Optional)
+------------------------------------------
+
+To apply Pywal colors on each terminal launch:
+
+Add the following to your shell config file:
+
+    [ -f "$HOME/.cache/wal/colors.sh" ] && source "$HOME/.cache/wal/colors.sh"
+
+- For bash: add it to `~/.bashrc`
+- For zsh: add it to `~/.zshrc`
+
+Done!
+-----
+Pywal is now installed and ready to use.
