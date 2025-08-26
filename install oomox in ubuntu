@@ -1,0 +1,6 @@
+git clone https://github.com/themix-project/oomox.git --recursive
+cd oomox
+
+sudo apt install gettext
+make -f po.mk install
+./gui.sh
